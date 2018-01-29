@@ -1,6 +1,8 @@
 # Flickr Browser
 
-Flick android client
+Flickr android client
+
+<img src="./img.png" alt="flickr browser" width="300">
 
 ## Built With
 
