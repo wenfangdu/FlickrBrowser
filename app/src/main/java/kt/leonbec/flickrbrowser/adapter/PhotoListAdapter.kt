@@ -35,10 +35,6 @@ class PhotoListAdapter(
         notifyDataSetChanged()
     }
 
-    fun getPhoto(position: Int): Photo {
-        return mlPhoto[position]
-    }
-
     class VH(v: View, private val onClick: (Photo) -> Unit) : RecyclerView.ViewHolder(v) {
         private val ivThumbnail = v.findViewById<ImageView>(R.id.iv_thumbnail)
         private val tvTitle = v.findViewById<TextView>(R.id.tv_title)
