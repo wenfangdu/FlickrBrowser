@@ -51,6 +51,7 @@ class PhotoListAdapter(
                 .into(ivThumbnail)
 
             tvTitle.text = photo.title
+            //注意，这里设置onClickListener 会导致在搜索框用外接键盘enter时，焦点到view上
             itemView.setOnClickListener { onClick(photo) }
         }
     }

@@ -14,12 +14,15 @@ import kt.leonbec.flickrbrowser.asyncTask.GetJsonData
 import kt.leonbec.flickrbrowser.asyncTask.ParseJsonData
 import kt.leonbec.flickrbrowser.data.Photo
 import kt.leonbec.flickrbrowser.util.FLICKR_QUERY
+import kt.leonbec.flickrbrowser.util.PHOTO_TRANSFER
 import kt.leonbec.flickrbrowser.util.createUrl
 
 class MainActivity : BaseActivity(), GetJsonData.Listener, ParseJsonData.Listener {
 
     private val photoListAdapter = PhotoListAdapter(mutableListOf()) {
-        Toast.makeText(this, "You tapped it, bro", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, PhotoDetailActivity::class.java)
+        intent.putExtra(PHOTO_TRANSFER, it)
+        startActivity(intent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +38,7 @@ class MainActivity : BaseActivity(), GetJsonData.Listener, ParseJsonData.Listene
         super.onResume()
 
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+//        sharedPref.edit().clear().apply()
         val query = sharedPref.getString(FLICKR_QUERY, "")
 
         val url = createUrl(
@@ -72,6 +76,9 @@ class MainActivity : BaseActivity(), GetJsonData.Listener, ParseJsonData.Listene
     }
 
     override fun onParseDataDataComplete(mlPhoto: MutableList<Photo>) {
-        photoListAdapter.loadData(mlPhoto)
+        if (mlPhoto.isEmpty())
+            Toast.makeText(this, "Sorry, no photo matches your search", Toast.LENGTH_LONG).show()
+        else
+            photoListAdapter.loadData(mlPhoto)
     }
 }
