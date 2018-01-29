@@ -2,4 +2,8 @@
     <string name="app_name">FlickrBrowser</string>
     <string name="action_settings">Settings</string>
     <string name="iv_thumbnail">Photo thumbnail</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="mi_search">Search</string>
+    <string name="si_search">Search</string>
+    <string name="searchable_hint">Search Criteria</string>
 </resources>

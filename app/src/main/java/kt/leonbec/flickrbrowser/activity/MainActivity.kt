@@ -1,6 +1,8 @@
 package kt.leonbec.flickrbrowser.activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
@@ -11,6 +13,7 @@ import kt.leonbec.flickrbrowser.adapter.PhotoListAdapter
 import kt.leonbec.flickrbrowser.asyncTask.GetJsonData
 import kt.leonbec.flickrbrowser.asyncTask.ParseJsonData
 import kt.leonbec.flickrbrowser.data.Photo
+import kt.leonbec.flickrbrowser.util.FLICKR_QUERY
 import kt.leonbec.flickrbrowser.util.createUrl
 
 class MainActivity : BaseActivity(), GetJsonData.Listener, ParseJsonData.Listener {
@@ -31,9 +34,12 @@ class MainActivity : BaseActivity(), GetJsonData.Listener, ParseJsonData.Listene
     override fun onResume() {
         super.onResume()
 
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        val query = sharedPref.getString(FLICKR_QUERY, "")
+
         val url = createUrl(
             "https://api.flickr.com/services/feeds/photos_public.gne?",
-            "kotlin", true
+            query, true
         )
         val getJsonData = GetJsonData(this)
         getJsonData.execute(url)
@@ -50,7 +56,10 @@ class MainActivity : BaseActivity(), GetJsonData.Listener, ParseJsonData.Listene
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.mi_search -> {
+                startActivity(Intent(this, SearchActivity::class.java))
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

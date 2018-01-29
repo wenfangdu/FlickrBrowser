@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="kt.leonbec.flickrbrowser.activity.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/mi_search"
+        android:icon="@android:drawable/ic_menu_search"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:title="@string/mi_search"
+        app:showAsAction="ifRoom" />
 </menu>
