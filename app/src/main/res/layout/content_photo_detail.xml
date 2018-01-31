@@ -10,8 +10,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="50dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tv_title"
@@ -49,7 +48,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_tags"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_photo"
             tools:text="Smarter, faster, and more powerful than ever. The world's favorite cookie is your new favorite Android release.   Learn about Android Oreo essentials  Get started with Android 8.1" />
@@ -58,11 +59,14 @@
             android:id="@+id/tv_tags"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_author"
             tools:text="Smarter, faster, and more powerful than ever. The world's favorite cookie is your new favorite Android release.   Learn about Android Oreo essentials  Get started with Android 8.1" />

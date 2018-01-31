@@ -27,7 +27,7 @@ class SearchActivity : BaseActivity(), SearchView.OnQueryTextListener {
         val searchableInfo = searchManager.getSearchableInfo(componentName)
         searchView?.setSearchableInfo(searchableInfo)
         searchView?.isIconified = false
-
+        
         searchView?.setOnQueryTextListener(this)
         searchView?.setOnCloseListener { finish();false }
 
