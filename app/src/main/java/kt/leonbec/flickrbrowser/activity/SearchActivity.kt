@@ -19,24 +19,27 @@ class SearchActivity : BaseActivity(), SearchView.OnQueryTextListener {
         activateToolbar(true)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_search, menu)
 
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        searchView = menu?.findItem(R.id.app_bar_search)?.actionView as SearchView
+        searchView = menu.findItem(R.id.app_bar_search).actionView as SearchView
         val searchableInfo = searchManager.getSearchableInfo(componentName)
-        searchView?.setSearchableInfo(searchableInfo)
-        searchView?.isIconified = false
-        
-        searchView?.setOnQueryTextListener(this)
-        searchView?.setOnCloseListener { finish();false }
+        with(searchView!!) {
+            setSearchableInfo(searchableInfo)
+            isIconified = false
+
+            setOnQueryTextListener(this@SearchActivity)
+            setOnCloseListener { finish();false }
+        }
 
         return true
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        val sharedPref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
-        sharedPref.edit().putString(FLICKR_QUERY, query).apply()
+        with(PreferenceManager.getDefaultSharedPreferences(applicationContext)) {
+            edit().putString(FLICKR_QUERY, query).apply()
+        }
         searchView?.clearFocus()
         finish()
 

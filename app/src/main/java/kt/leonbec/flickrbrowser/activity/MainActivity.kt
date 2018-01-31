@@ -20,9 +20,10 @@ import kt.leonbec.flickrbrowser.util.createUrl
 class MainActivity : BaseActivity(), GetJsonData.Listener, ParseJsonData.Listener {
 
     private val photoListAdapter = PhotoListAdapter(mutableListOf()) {
-        val intent = Intent(this, PhotoDetailActivity::class.java)
-        intent.putExtra(PHOTO_TRANSFER, it)
-        startActivity(intent)
+        with(Intent(this, PhotoDetailActivity::class.java)) {
+            putExtra(PHOTO_TRANSFER, it)
+            startActivity(this)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,8 +31,10 @@ class MainActivity : BaseActivity(), GetJsonData.Listener, ParseJsonData.Listene
         setContentView(R.layout.activity_main)
         activateToolbar(false)
 
-        rv_photo_list.layoutManager = LinearLayoutManager(this)
-        rv_photo_list.adapter = photoListAdapter
+        with(rv_photo_list) {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = photoListAdapter
+        }
     }
 
     override fun onResume() {
@@ -70,8 +73,7 @@ class MainActivity : BaseActivity(), GetJsonData.Listener, ParseJsonData.Listene
 
     override fun onGetJsonDataComplete(jsonData: String?) {
         if (jsonData != null) {
-            val parseJsonData = ParseJsonData(this)
-            parseJsonData.execute(jsonData)
+            ParseJsonData(this).apply { execute(jsonData) }
         }
     }
 

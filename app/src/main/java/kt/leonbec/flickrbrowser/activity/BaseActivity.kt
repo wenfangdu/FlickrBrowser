@@ -10,8 +10,9 @@ import kt.leonbec.flickrbrowser.R
 open class BaseActivity : AppCompatActivity() {
 
     fun activateToolbar(showHomeAsUp: Boolean) {
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        with(findViewById<Toolbar>(R.id.toolbar)) {
+            setSupportActionBar(this)
+        }
         supportActionBar?.setDisplayHomeAsUpEnabled(showHomeAsUp)
     }
 }
