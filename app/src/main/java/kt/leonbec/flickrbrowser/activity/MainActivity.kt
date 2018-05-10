@@ -72,9 +72,7 @@ class MainActivity : BaseActivity(), GetJsonData.Listener, ParseJsonData.Listene
     }
 
     override fun onGetJsonDataComplete(jsonData: String?) {
-        if (jsonData != null) {
-            ParseJsonData(this).apply { execute(jsonData) }
-        }
+        jsonData?.let { ParseJsonData(this).apply { execute(it) } }
     }
 
     override fun onParseDataDataComplete(mlPhoto: MutableList<Photo>) {
