@@ -11,11 +11,11 @@ Flickr android client
 
 ## Versioning
 
-I use [git](https://git-scm.com/) for versioning. For the versions available, see the [tags on this repository](https://github.com/leonbec/FlickrBrowser/tags).
+I use [git](https://git-scm.com/) for versioning. For the versions available, see the [tags on this repository](https://github.com/dwfgh/FlickrBrowser/tags).
 
 ## Authors
 
-* **leonbec** - _Initial work_ - [FlickrBrowser](https://github.com/leonbec/FlickrBrowser)
+* **Leon Du@dwfgh** - _Initial work_ - [FlickrBrowser](https://github.com/dwfgh/FlickrBrowser)
 
 ## License
 
